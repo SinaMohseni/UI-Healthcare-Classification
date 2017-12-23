@@ -1,0 +1,145 @@
+[
+ {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature44"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature33"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature22"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature11"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature444"], 
+  "class": "symptom"
+ },
+ {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature44"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature33"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature22"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature11"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature444"], 
+  "class": "symptom"
+ }, {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature44"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature33"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature22"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature11"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4", "feature5"], 
+  "class": "symptom"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature444"], 
+  "class": "symptom"
+ }
+]

@@ -1,0 +1,22 @@
+[
+ {
+  "feature": ["feature1" , "feature2" , "feature3" , "feature4"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1"], 
+  "class": "medication"
+ },
+  {
+  "feature": ["feature1" , "feature2" , "feature3"], 
+  "class": "symptom"
+ },
+ {
+  "feature": "classificationscore", 
+  "type": 0.9
+ }
+]

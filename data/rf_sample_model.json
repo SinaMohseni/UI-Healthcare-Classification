@@ -1,0 +1,125 @@
+[
+ {
+  "feature": "feature1", 
+  "score": 0.3,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.8,
+  "class": "symptom"
+ },
+ {
+  "feature": "feature1", 
+  "score": 0.7,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.4,
+  "class": "symptom"
+ },
+{
+  "feature": "feature1", 
+  "score": 0.3,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.8,
+  "class": "symptom"
+ },
+ {
+  "feature": "feature1", 
+  "score": 0.7,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.4,
+  "class": "symptom"
+ },
+{
+  "feature": "feature1", 
+  "score": 0.3,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.8,
+  "class": "symptom"
+ },
+ {
+  "feature": "feature1", 
+  "score": 0.7,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.4,
+  "class": "symptom"
+ },
+{
+  "feature": "feature1", 
+  "score": 0.3,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.8,
+  "class": "symptom"
+ },
+ {
+  "feature": "feature1", 
+  "score": 0.7,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.4,
+  "class": "symptom"
+ },
+{
+  "feature": "feature1", 
+  "score": 0.3,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.8,
+  "class": "symptom"
+ },
+ {
+  "feature": "feature1", 
+  "score": 0.7,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.4,
+  "class": "symptom"
+ },
+{
+  "feature": "feature1", 
+  "score": 0.3,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.8,
+  "class": "symptom"
+ },
+ {
+  "feature": "feature1", 
+  "score": 0.7,
+  "class": "medication"
+ },
+ {
+  "feature": "feature2", 
+  "score": 0.4,
+  "class": "symptom"
+ }
+
+
+
+]

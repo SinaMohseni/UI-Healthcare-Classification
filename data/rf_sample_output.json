@@ -1,0 +1,24 @@
+[
+ {
+  "feature": "capsule", 
+  "type": "word"
+ },
+ {
+  "feature": "no-side-effect", 
+  "type": "semantic"
+ },
+ {
+  "feature": "sequence", 
+  "type": "make sure with your doctor"
+ },
+ {
+  "feature": "classificationscore", 
+  "type": 0.9
+ },
+{
+  "feature": "classtype", 
+  "type": "Symptom"
+ }
+
+
+]
