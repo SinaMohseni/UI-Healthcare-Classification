@@ -1,229 +1,192 @@
-
 <!DOCTYPE html>
-
-<meta charset="utf-8">
 
 <head>
 <title>Explainable Machine Learning (XAI)</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <link rel="stylesheet" href="./styles/simple-style.css">
-  <script src="./libraries/heatmap.min.js"></script>
-  <script src="./libraries/heatmap.js"></script>
-  <!-- <link rel="stylesheet" href="./libraries/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.8.20/jquery-ui.min.js" type="text/javascript"></script>
-     
-
-     <style>
-      #heatmap { width:100%; height:100%;}
-    </style>
-
+  <script src="http://code.jquery.com/ui/1.8.20/jquery-ui.min.js" type="text/javascript"></script>
 </head>
-
-
-
-
 
 <body>
 
-<div id="panel" style="z-index:10">
-
-  <div id="panelCaller"> Classifiers  &nbsp;  &nbsp;</div>
-
-  <br />
-  <br />
-  <p1> &nbsp; &nbsp; &nbsp; Select Data: </p1>
-  <select id="sources_dataset" name="sources_dataset" onchange="changePage1()">
-    <!-- <option value = "image" selected>Image Recognition</option> -->
-    <option value = "text" >Healthcare Text Mining</option>
-  </select>​
-  <br />
-  <br />
-
-  <p1> &nbsp; &nbsp; &nbsp; Select a Classifier: </p1>
-  <select id="select_tree" name="select_tree"  onchange="changePage2()">
-    <option value ="RF" selected> Random Forest </option>
-      <option value ="DP" >Discriminant Patterns</option>
-  </select>​
-  
-  <br />
-  <br />
-
- <!--  <br /> &nbsp; &nbsp; &nbsp; Number of Rules:
-  <br />
-  <br />
-  &nbsp; &nbsp; &nbsp;&nbsp; <input type="text" id="rulesNumber" value="Number of rules...">  
-  &nbsp; &nbsp; <button onclick="getRulesNumber()">Enter</button>
-
-  </br>
-  </br> -->
-
-    <br /> &nbsp; &nbsp; &nbsp; Number of Rules: &nbsp; &nbsp;
-  <!-- &nbsp; &nbsp; &nbsp;&nbsp; <input type="text" id="rulesNumber" value="Number of rules...">  
-  &nbsp; &nbsp; <button onclick="getRulesNumber()">Enter</button> -->
-  <select id="rules_number" name="rules_number" onchange="train()">
-    <option value = 10 > 5 </option>
-    <option value = 10 > 10 </option>
-    <option value = 20 > 20 </option>
-    <option value = 20 selected> 30 </option>
-    <option value = 20 > 40 </option>
-    <option value = 20 > 50 </option>
-  </select>​
-
-  </br>
-  </br>
-  
-    </br>
-  </br>
-  </br>
-  </br>
-  <br />
-<!--   <br /> &nbsp; &nbsp; &nbsp; Control Pannel:
-
-  <form name="formSection">
-    <br />
-    <g>
-    &nbsp; &nbsp; &nbsp;&nbsp;<input type="checkbox" id="cluster_checkbox" name="cluster_checkbox">Control 1</br>
-    &nbsp; &nbsp; &nbsp;&nbsp;<input type="checkbox" id="report_checkbox" name="report_checkbox">Control 2</br>
-    </g>
-  </form>
-  
-  <br />
- -->
-  <!-- 
-  </br>
-  </br>
-  &nbsp; &nbsp; &nbsp; Printable results:  <input type="button" value="Download" onclick="saveIt()"> 
-  </br>
-  </br> -->
-  
-    </br>
-  </br>
-  </br>
-  </br>
-</div>
-  
-<!-- <div id="home_button" > <button onclick="location.href='http://csedatasrv.cs.tamu.edu:3000/';">Back to Home Page</button> </div>   -->
-   <a id="home_button" href="http://csedatasrv.cs.tamu.edu:3000/" type="button">Back to Home Page</a>
-
-
-  </br>
-
-  <div id="chartDiv" ></div>
-
-  <div id="textbox" >
-    <form id="form1" runat="server">
-            <div class="dropitems">
-            <textarea id="TextArea" name="S1" rows="14"></textarea>   <!-- cols="95"  -->
-            </div>
-      </form>
-  </div>
-
-  <div id="textboxbutton1" > <button onclick="getText()">Enter</button> </div>
-  <div id="textboxbutton2" > <button onclick="clearText()">Clear</button> </div>
-  
-
-    <div id="form2" class="dragitems">
-            <ul id="allfields" runat="server">
-                <li id="node1">Example 1</li> 
-                <li id="node2">Example 2</li>
-                <li id="node3">Example 3</li>
-                <li id="node4">Example 4</li>
-                <li id="node5">Example 5</li>
-            </ul>
+    <div class="topnav" id="myTopnav">
+      <a href="index.html" class="active">Home</a>   <!-- http://csedatasrv.cs.tamu.edu:3000/ -->
+      <!-- <a href="#news">News</a>
+      <a href="#contact">Contact</a> -->
+      <div class="dropdown">
+        <button class="dropbtn">Rules 
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">5</a>
+          <a href="#">10</a>
+          <a href="#">20</a>
+          <a href="#">40</a>
+          <a href="#">50</a>
+        </div>
+      </div>
+      <select id="select_tree" name="select_tree"  onchange="changePage()">
+        <option value ="RF" selected> Random Forest </option>
+        <option value ="DP" >Discriminant Patterns</option>
+      </select>​ 
+      <a href="http://indie.arch.tamu.edu/" style= "float:   right">Texas A&M University</a>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 
-  <script>
-    function changePage1() {
-    var myNode = document.getElementById("chartDiv");
-    myNode.innerHTML = '';
-
-      var x = document.getElementById("select_tree").value;
-      var y = document.getElementById("sources_dataset").value;
-
-      var s = document.createElement("script");
-      s.type = "text/javascript";
-      console.log(x, "-", y)
-      if (y == "text") {
-        // if (x == "RF") {
-        //  s.src = "./scripts/rf.js";
-        // }else if (x == "DP"){
-        //  s.src = "./scripts/dp.js";
-        // }
-        location.reload();  
-      }else if (y == "image") {
-          s.src = "./scripts/img.js";
-          document.getElementById("textbox").remove();
-      }  
-      s.innerHTML = null;
-      s.id = "maincode";
-      document.getElementById("userinterface").innerHTML = "";
-      document.getElementById("userinterface").appendChild(s);
-    }
-  </script>
-
-    <script>
-    function changePage2() {
-    var myNode = document.getElementById("chartDiv");
-    myNode.innerHTML = '';
-
-      var x = document.getElementById("select_tree").value;
-      var y = document.getElementById("sources_dataset").value;
-
-      var s = document.createElement("script");
-      s.type = "text/javascript";
-      console.log(x, "-", y)
-      if (y == "text") {
-        // location.reload(); 
-        if (x == "RF") {
-          s.src = "./scripts/rf.js";
-        }else if (x == "DP"){
-          s.src = "./scripts/dp.js";
+<script>
+    function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
         }
-      }else if (y == "image") {
-          s.src = "./scripts/img.js";
-          // document.getElementById("textbox").remove();
-      }  
-      s.innerHTML = null;
-      s.id = "maincode";
-      document.getElementById("userinterface").innerHTML = "";
-      document.getElementById("userinterface").appendChild(s);
     }
-  </script>
+</script>
+
+  <!-- <a id="home_button" href="http://csedatasrv.cs.tamu.edu:3000/" type="button">Back to Home Page</a> -->
+
+    
+
+
+  <!-- <div id="chartDiv"> </div> -->
+
+<!--   <div id="chartDiv" >
+    <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="subject">Subject</label>
+          </div>
+          <div class="col-75">
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <input type="submit" value="Submit">
+        </div>
+    </form>
   
-  <div id="userinterface">
+  </div> -->
 
-  <script>
-      var myNode = document.getElementById("chartDiv");
-      myNode.innerHTML = '';
-        var x = document.getElementById("select_tree").value;
-        var y = document.getElementById("sources_dataset").value;
 
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        console.log(x, "-", y)
-        if (y == "text") {
-          if (x == "RF") {
-            s.src = "./scripts/rf.js";
-          }else if (x == "DP"){
-            s.src = "./scripts/dp.js";
-          }
-        }else if (y == "image") {
-            s.src = "./scripts/img.js";
-            document.getElementById("textbox").remove();
-        }  
-        s.innerHTML = null;
-        s.id = "maincode";
-        document.getElementById("userinterface").innerHTML = "";
-        document.getElementById("userinterface").appendChild(s);
-  </script>
 
-    <!-- <script id="maincode" type="text/javascript" src="./scripts/img.js"></script> -->
-  </div>
+<!-- 
+    <script>
+        function changePage() {
+          var myNode = document.getElementById("chartDiv");
+          myNode.innerHTML = '';
+          var x = document.getElementById("select_tree").value;
+          var s = document.createElement("script");
 
-  <!-- <script id= maincode src="./scripts/main.js"></script>  -->
+          s.type = "text/javascript";
+
+            if (x == "RF") {
+              s.src = "./scripts/rf.js";
+            }else if (x == "DP"){
+              s.src = "./scripts/dp.js";
+            }
+
+          s.innerHTML = null;
+          s.id = "maincode";
+          document.getElementById("chartDiv").innerHTML = "";
+          document.getElementById("chartDiv").appendChild(s);
+        }
+    </script> -->
   
+    <div id="chartDiv">  <!-- userinterface -->
+        <script>
+            var myNode = document.getElementById("chartDiv");
+            myNode.innerHTML = '';
+            var x = document.getElementById("select_tree").value;
+            var s = document.createElement("script");
+
+            s.type = "text/javascript";
+              if (x == "RF") {
+                s.src = "./scripts/rf.js";
+              }else if (x == "DP"){
+                s.src = "./scripts/dp.js";
+              }
+
+            s.innerHTML = null;
+            s.id = "maincode";
+            document.getElementById("chartDiv").innerHTML = "";
+            document.getElementById("chartDiv").appendChild(s);
+        </script>
+      <!--   <table>
+            <tr>
+            <td>
+ -->
+
+
+
+            <div id= "textbox">
+                    <div class="row">
+                      <div class="col-90">
+                        <textarea id="TextArea" name="S1" placeholder="Write something.." style="height:200px; width:85%;" ></textarea>
+                      </div>
+                      <div class="col-10">
+                        <div id="form2" class="dragitems" style="padding-left: 5%;" >
+                            <ul id="allfields" runat="server">
+                                <li id="node1">Example 1</li> 
+                                <li id="node2">Example 2</li>
+                                <li id="node3">Example 3</li>
+                                <li id="node4">Example 4</li>
+                                <li id="node5">Example 5</li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                          <!-- <input type="submit" onclick="getText()">  
+                          <input type="submit" onclick="clearText()"> -->
+                          <div class="col-10"> 
+                            <button onclick="getText()">Enter</button> 
+                          </div>
+                          <div class="col-90"> 
+                            <button onclick="clearText()">Clear</button> 
+                          </div>
+                    </div>
+                    <div class="row">
+                      <div id = "ExpDiv"> </div>
+                    </div>
+            </div>
+<!--                 <div class="row">
+                    <div id="textbox" >
+                      <form id="form1" runat="server">
+                            <div class="dropitems">
+                            <textarea id="TextArea" name="S1" rows="14"></textarea>
+                            </div>
+                      </form>
+                    </div>
+                    <div id="form2" class="dragitems">
+                        <ul id="allfields" runat="server">
+                            <li id="node1">Example 1</li> 
+                            <li id="node2">Example 2</li>
+                            <li id="node3">Example 3</li>
+                            <li id="node4">Example 4</li>
+                            <li id="node5">Example 5</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="textboxbutton1" > <button onclick="getText()">Enter</button> </div>
+                    <div id="textboxbutton2" > <button onclick="clearText()">Clear</button> </div>
+                </div> -->
+
+    <!--         </td>
+            </tr>
+            <tr>
+                <div id = "ExpDiv"> </div>
+
+            </tr>
+        </table> -->
+    </div>
+
 </body>
 </html>
