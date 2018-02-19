@@ -39,33 +39,39 @@ d3.select("div#chartDiv")
             x = w.innerWidth || e.clientWidth || g.clientWidth,
             y = w.innerHeight|| e.clientHeight|| g.clientHeight;
 		
-		console.log(w.innerHeight, e.clientHeight, g.clientHeight)
+		console.log("Height: ", w.innerHeight, e.clientHeight, g.clientHeight)
+		console.log("Width: ", w.innerWidth, e.clientWidth, g.clientWidth)
 
-        if ((ratio < 400) & ( (w.innerHeight - (g.clientHeight)) > 20)) {
-            ratio = ratio+0.5;
-            d3.select(".svg-container").style("padding-bottom", ratio+"%") 
-            console.log(ratio, "height: ", height, "width: ", width)
-            updateWindow_top()
-        }
+		page_ratio = (w.innerHeight / w.innerWidth)*100 - 0.5;
+		d3.select(".svg-container").style("padding-bottom", page_ratio+"%")
 
-        if ((ratio > 1) & ( ((g.clientHeight) - w.innerHeight) > 20)) {
-            ratio = ratio-0.5;
-            d3.select(".svg-container").style("padding-bottom", ratio+"%") 
-            console.log(ratio, "height: ", height, "width: ", width)
-            updateWindow_top()
-        }
+        // if ((ratio < 400) & ( (w.innerHeight - (g.clientHeight)) > 20)) {
+        //     ratio = ratio+0.5;
+        //     d3.select(".svg-container").style("padding-bottom", ratio+"%") 
+        //     console.log(ratio)
+        //     updateWindow_top()
+        // }
+
+        // if ((ratio > 1) & ( ((g.clientHeight) - w.innerHeight) > 20)) {
+        //     ratio = ratio-0.5;
+        //     d3.select(".svg-container").style("padding-bottom", ratio+"%") 
+        //     console.log(ratio)
+        //     updateWindow_top()
+        // }
         
-        height = 600 * (ratio / 100) * (100 / 35);
+        height = 600 * (page_ratio / 100) * (100 / 35);
         d3.select(".svg_data").attr("viewBox","0 0 " + width + " " + height)
+        console.log("height:",height, "width:", width, "<<-----")
     }
 
-    // d3.select(window).on('resize.updatesvg', updateWindow_top);
+    d3.select(window).on('resize.updatesvg', updateWindow_top);
 
-    console.log("height:",height, "width:", width)
+    
 
 
       // ---------- Border around the view ---------- 
-
+var exp_font = 12;
+var list_font = 14;
 var width_plus = 0;
 var height_plus = 0;
 
@@ -78,7 +84,7 @@ var div1 = d3.select(".svg_data2").append("talkbubble")   // Tooltip
 		.style("height", 48)
 		.style("border-radius", "8px")   // "10% / 10%")
 		.style("padding", 2)
-		.style("font-size", 12)
+		.style("font-size", 8)
 		.style("background", "lightblue") // "#1e90ff")
 		.style("border", 3)
 		.style("pointer-events", "none");
@@ -130,10 +136,14 @@ function getRulesNumber(){
 
 function getText() {
 
-	for (var i = 0; i < 300; i++) {
-	    d3.select(".svg_data2").selectAll(".explanation-"+i.toString()).remove(); 
-	    d3.select(".svg_data2").selectAll(".boxes-"+i.toString()).remove(); 
-    }
+    d3.select(".svg_data2").selectAll(".explanation").remove(); 
+	d3.select(".svg_data2").selectAll(".boxes").remove(); 
+
+    d3.selectAll(".explanation_frame").attr("height", 200);
+
+    chart_svg.selectAll(".result_bar").remove(); 
+	chart_svg.selectAll(".result_frame").remove(); 
+	chart_svg.selectAll(".class_label").remove(); 
 
     var output = document.getElementById("TextArea").value;
 	
@@ -273,7 +283,7 @@ function getText() {
 				var exp_margin = 20;
 
 				words_box = chart_svg2.selectAll(".boxes")
-									.data(words_hash).enter().append("g").attr("class", "words");		
+									.data(words_hash).enter().append("g").attr("class", "boxes");		
 
 				words_box.append("rect")
 					.attr("class",function(d,i){return "boxes-"+i.toString()})
@@ -387,7 +397,8 @@ function getText() {
 								return d.x})  
 				    .attr("y", function(d,i){
 								return d.y;})  // + d.count*clearance + clearance })
-				    .attr("dy", ".35em")
+				    // .attr("dy", ".35em")
+				    .attr("font-size", exp_font)
 				    .text(function(d) {
 				    	return d.word; 
 				    })
@@ -435,9 +446,18 @@ function getText() {
 
 					});
 
-				this_ratio = 100* (explanation_width / (5*next_line + line_counter * next_line))
+				this_ratio = 100* ((5*next_line + line_counter * next_line) / explanation_width)
 				console.log("this_ratio ", this_ratio)
 				d3.select(".svg2-container").style("padding-bottom", this_ratio+"%");
+				if (this_ratio > page_ratio) {
+					height += (line_counter * next_line)
+					new_page_ratio = (height / width)*100*0.35 - 0.5;
+					d3.select(".svg-container").style("padding-bottom", new_page_ratio+"%")
+			        // height = 600 * (page_ratio / 100) * (100 / 35);
+			        d3.select(".svg_data").attr("viewBox","0 0 " + width + " " + height)
+			        console.log(new_page_ratio, "height:",height, "width:", width, "<<-----")
+
+				}
 				d3.select(".svg_data2").attr("viewBox","0 0 " + (explanation_width) + " " + (5*next_line + line_counter * next_line));
 				chart_svg2.attr("height", (5*next_line + line_counter * next_line));
 				chart_svg2.selectAll(".explanation_frame").attr("height", (3*next_line + line_counter * next_line));
@@ -708,12 +728,16 @@ function tooltip(d){
 
 function clearText() {
     document.getElementById("TextArea").value = ""
+    
+    d3.select(".svg_data2").selectAll(".explanation").remove(); 
+	d3.select(".svg_data2").selectAll(".boxes").remove(); 
+
     for (var i = 0; i < 300; i++) {
 	    d3.select(".svg_data2").selectAll(".explanation-"+i.toString()).remove(); 
 	    d3.select(".svg_data2").selectAll(".boxes-"+i.toString()).remove(); 
     }
     
-    d3.selectAll(".explanation_frame").attr("height", (3*next_line + 3 * next_line));
+    d3.selectAll(".explanation_frame").attr("height", 200);
 
     chart_svg.selectAll(".result_bar").remove(); 
 	chart_svg.selectAll(".result_frame").remove(); 
@@ -750,8 +774,6 @@ var colors = d3.scaleOrdinal(d3.schemeCategory10);
 //     height = +svg.attr("height") - margin.top - margin.bottom,    
 // 	chart_svg = svg.append("g").attr("class","svg_chart"); // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-chart_svg = d3.select(".svg_data").append("g").attr("class","svg_chart");
-chart_svg2 = d3.select(".svg_data2").append("g").attr("class","svg_chart2");
 
 
 
@@ -781,11 +803,16 @@ chart_svg2 = d3.select(".svg_data2").append("g").attr("class","svg_chart2");
 	var explanation_x = 0
 	var explanation_y = 50
 	var explanation_height = 300
-	var explanation_width = 580
+	var explanation_width = 600
 	var result_height = 100
 
-	d3.select(".svg2-container").style("padding-bottom", ratio+"%") 
-	d3.select(".svg_data2").attr("viewBox","0 0 " + (explanation_width) + " " + explanation_height)
+
+	d3.select(".svg2-container").style("padding-bottom", page_ratio+"%") 
+	d3.select(".svg_data2").attr("viewBox","0 0 " + (width) + " " + height)
+	
+	chart_svg = d3.select(".svg_data").append("g").attr("class","svg_chart");
+	chart_svg2 = d3.select(".svg_data2").append("g").attr("class","svg_chart2");
+
 
 	chart_svg2.append('text')
 			  .style("font-weight", "bold")
@@ -793,10 +820,10 @@ chart_svg2 = d3.select(".svg_data2").append("g").attr("class","svg_chart2");
 			  .attr('dy','0.35em')
 			  .attr('transform', 'translate(' + explanation_x+ ','+(explanation_y - 20)+')')
 
-	chart_svg2.append('text').style("font-weight", "bold")
-			  .text("Input:")
-			  .attr('dy','0.35em')
-			  .attr('transform', 'translate(' + explanation_x+ ','+(list_y +margin.top)+')')
+	// chart_svg2.append('text').style("font-weight", "bold")
+	// 		  .text("Input:")
+	// 		  .attr('dy','0.35em')
+	// 		  .attr('transform', 'translate(' + explanation_x+ ','+(list_y)+')')
 
 	var explanation_frame = chart_svg2.append("g").append("rect").attr("class","explanation_frame")
 					.attr("x", explanation_x)
@@ -822,7 +849,8 @@ function readData(){
 		
 		
 		// list_height = jsondata.length * 55 / 2
-		list_height = Math.min((height * 0.6), (jsondata.length * 55 / 2))
+		// list_height = Math.min((height * 0.6), (jsondata.length * 55 / 2))
+		list_height = width * 0.8;
 		each_word_gap = (list_height / jsondata.length) * 1.9;
 
 		chart_svg.append('text').style("font-weight", "bold")
@@ -899,7 +927,7 @@ function readData(){
 							.attr("x", list_x + 30)  //+ margin.left + 30
 							.attr("y", function(d){return (d.count*each_word_gap + list_y + 30)})
 							.attr("text-anchor", "left")
-							.attr("font-size", 14)
+							.attr("font-size", list_font)
 							.attr("font-weight", "bold");
 
 		var counter = 0
@@ -918,7 +946,7 @@ function readData(){
 							.attr("x", list_x + 30 + list_width + 50)  // margin.left +
 							.attr("y", function(d){return (d.count*each_word_gap + list_y + 30)})
 							.attr("text-anchor", "left")
-							.attr("font-size", 14)
+							.attr("font-size", list_font)
 							.attr("font-weight", "bold");
 
 

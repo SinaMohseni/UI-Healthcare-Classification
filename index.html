@@ -49,57 +49,8 @@
         }
     }
 </script>
-
-  <!-- <a id="home_button" href="http://csedatasrv.cs.tamu.edu:3000/" type="button">Back to Home Page</a> -->
-
-    
-
-
-  <!-- <div id="chartDiv"> </div> -->
-
-<!--   <div id="chartDiv" >
-    <form>
-        <div class="row">
-          <div class="col-25">
-            <label for="subject">Subject</label>
-          </div>
-          <div class="col-75">
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-          </div>
-        </div>
-        <div class="row">
-          <input type="submit" value="Submit">
-        </div>
-    </form>
   
-  </div> -->
-
-
-
-<!-- 
-    <script>
-        function changePage() {
-          var myNode = document.getElementById("chartDiv");
-          myNode.innerHTML = '';
-          var x = document.getElementById("select_tree").value;
-          var s = document.createElement("script");
-
-          s.type = "text/javascript";
-
-            if (x == "RF") {
-              s.src = "./scripts/rf.js";
-            }else if (x == "DP"){
-              s.src = "./scripts/dp.js";
-            }
-
-          s.innerHTML = null;
-          s.id = "maincode";
-          document.getElementById("chartDiv").innerHTML = "";
-          document.getElementById("chartDiv").appendChild(s);
-        }
-    </script> -->
-  
-    <div id="chartDiv">  <!-- userinterface -->
+    <div id="chartDiv" >
         <script>
             var myNode = document.getElementById("chartDiv");
             myNode.innerHTML = '';
@@ -118,12 +69,6 @@
             document.getElementById("chartDiv").innerHTML = "";
             document.getElementById("chartDiv").appendChild(s);
         </script>
-      <!--   <table>
-            <tr>
-            <td>
- -->
-
-
 
             <div id= "textbox">
                     <div class="row">
@@ -143,10 +88,8 @@
                       </div>
                     </div>
                     <div class="row">
-                          <!-- <input type="submit" onclick="getText()">  
-                          <input type="submit" onclick="clearText()"> -->
                           <div class="col-10"> 
-                            <button onclick="getText()">Enter</button> 
+                            <button onclick="getText()">Submit</button> 
                           </div>
                           <div class="col-90"> 
                             <button onclick="clearText()">Clear</button> 
@@ -156,36 +99,6 @@
                       <div id = "ExpDiv"> </div>
                     </div>
             </div>
-<!--                 <div class="row">
-                    <div id="textbox" >
-                      <form id="form1" runat="server">
-                            <div class="dropitems">
-                            <textarea id="TextArea" name="S1" rows="14"></textarea>
-                            </div>
-                      </form>
-                    </div>
-                    <div id="form2" class="dragitems">
-                        <ul id="allfields" runat="server">
-                            <li id="node1">Example 1</li> 
-                            <li id="node2">Example 2</li>
-                            <li id="node3">Example 3</li>
-                            <li id="node4">Example 4</li>
-                            <li id="node5">Example 5</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row">
-                    <div id="textboxbutton1" > <button onclick="getText()">Enter</button> </div>
-                    <div id="textboxbutton2" > <button onclick="clearText()">Clear</button> </div>
-                </div> -->
-
-    <!--         </td>
-            </tr>
-            <tr>
-                <div id = "ExpDiv"> </div>
-
-            </tr>
-        </table> -->
     </div>
 
 </body>
